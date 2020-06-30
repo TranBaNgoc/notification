@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"context"
-	"notification-liveshopping/logging"
+	"github.com/TranBaNgoc/notification-liveshopping/logging"
 	"sync"
 )
 

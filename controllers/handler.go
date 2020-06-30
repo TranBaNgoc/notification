@@ -1,11 +1,11 @@
 package controllers
 
 import (
+	"github.com/TranBaNgoc/notification-liveshopping/logging"
+	notify "github.com/TranBaNgoc/notification-liveshopping/proto/notification"
 	"context"
 	"fmt"
 	"github.com/opentracing/opentracing-go"
-	"notification-liveshopping/logging"
-	notify "notification-liveshopping/proto/notification"
 )
 
 type Handler struct {

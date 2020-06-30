@@ -7,7 +7,7 @@ import (
 	rstatic "github.com/micro/go-micro/v2/api/router/static"
 	"github.com/micro/go-micro/v2/registry"
 	"net/http"
-	"notification-liveshopping/logging"
+	"github.com/TranBaNgoc/notification-liveshopping/logging"
 )
 
 const EndpointService = "/notify"

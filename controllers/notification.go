@@ -1,10 +1,10 @@
 package controllers
 
 import (
+	"github.com/TranBaNgoc/notification-liveshopping/logging"
 	"errors"
 	"net/http"
 	"net/url"
-	"notification-liveshopping/logging"
 	"strings"
 	"sync"
 
