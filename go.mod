@@ -14,4 +14,5 @@ require (
 	github.com/sirupsen/logrus v1.6.0
 	github.com/thoas/stats v0.0.0-20190407194641-965cb2de1678
 	golang.org/x/net v0.0.0-20200625001655-4c5254603344
+	google.golang.org/protobuf v1.23.0
 )
