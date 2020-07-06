@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"sync"
 )
 
@@ -16,11 +17,12 @@ func main() {
 	wg.Add(PushConf.WorkerNum)
 	InitWorkers(ct, wg, int64(PushConf.WorkerNum), int64(PushConf.QueueNum))
 
+	port := os.Getenv("PORT")
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/send", SendNotify)
 
-	log.Fatalln(http.ListenAndServe(":8899", mux))
+	log.Fatalln(http.ListenAndServe(":" + port, mux))
 }
 
 func SendNotify(writer http.ResponseWriter, request *http.Request) {
