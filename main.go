@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -21,7 +22,7 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/send", SendNotify)
-
+	fmt.Println("Server listening on port", port)
 	log.Fatalln(http.ListenAndServe(":" + port, mux))
 }
 
