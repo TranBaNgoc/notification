@@ -39,7 +39,7 @@ func LiveNotify(writer http.ResponseWriter, request *http.Request) {
 		req.Message = user_id[0] + " is start living"
 		req.Platform = 2
 		success := PushToAndroid(req)
-		if success {
+		if !success {
 			log.Println("Send message fail")
 			writer.WriteHeader(400)
 			writer.Write([]byte("Send message fail"))
@@ -61,7 +61,7 @@ func FollowNotify(writer http.ResponseWriter, request *http.Request) {
 		req.Message = f_id[0] + "following you"
 		req.Platform = 2
 		success := PushToAndroid(req)
-		if success {
+		if !success {
 			log.Println("Send message fail")
 			writer.WriteHeader(400)
 			writer.Write([]byte("Send message fail"))
