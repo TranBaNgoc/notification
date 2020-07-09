@@ -42,7 +42,7 @@ func FollowNotify(writer http.ResponseWriter, request *http.Request) {
 		}
 		log.Println("Send message success")
 		writer.WriteHeader(200)
-		writer.Write([]byte("Send message success"))
+		writer.Write([]byte("{ \"message\": \"Send message success\"}"))
 
 	}
 }
