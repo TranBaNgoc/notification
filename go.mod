@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/appleboy/go-fcm v0.1.5
+	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/protobuf v1.4.2
 	github.com/jinzhu/gorm v1.9.14
 	github.com/micro/go-micro/v2 v2.9.0

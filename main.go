@@ -2,9 +2,7 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -21,31 +19,30 @@ func main() {
 	port := os.Getenv("PORT")
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/send", SendNotify)
+	mux.HandleFunc("/follow", FollowNotify)
 	fmt.Println("Server listening on port", port)
-	log.Fatalln(http.ListenAndServe(":" + port, mux))
+	log.Fatalln(http.ListenAndServe(":"+port, mux))
 }
 
-func SendNotify(writer http.ResponseWriter, request *http.Request) {
-	body, err := ioutil.ReadAll(request.Body)
-	if err != nil {
-		log.Println(err)
-		return
-	}
-
-	req := PushNotification{}
-	json.Unmarshal(body, &req)
-
-
-	success := PushToAndroid(req)
-	if !success {
-		log.Println("Send message fail")
-		writer.WriteHeader(400)
-		writer.Write([]byte("Send message fail"))
+func FollowNotify(writer http.ResponseWriter, request *http.Request) {
+	user_id, ok := request.URL.Query()["user_id"]
+	if !ok {
+		log.Println("user_id is not param query")
 	} else {
+		req := PushNotification{}
+		req.Tokens = GetUserTokens(user_id[0])
+		req.Message = "This is a follow"
+		req.Platform = 2
+		success := PushToAndroid(req)
+		if success {
+			log.Println("Send message fail")
+			writer.WriteHeader(400)
+			writer.Write([]byte("Send message fail"))
+			return
+		}
 		log.Println("Send message success")
 		writer.WriteHeader(200)
 		writer.Write([]byte("Send message success"))
-	}
 
+	}
 }
